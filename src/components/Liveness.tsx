@@ -40,7 +40,7 @@ const RealtimeLiveness: React.FC = () => {
       setResult("Error detecting liveness ❌");
 
       if (isRunningRef.current) {
-        setTimeout(captureFrame, 5000); // Retry after 5 seconds
+        setTimeout(captureFrame, 6000); // Retry after 5 seconds
         // requestAnimationFrame(captureFrame);
       }
     }
