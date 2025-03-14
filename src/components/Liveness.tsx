@@ -24,7 +24,7 @@ const RealtimeLiveness: React.FC = () => {
       formData.append("file", blob, "image.jpg");
 
       console.log("Sending frame to API...");
-      const response = await fetch("http://localhost:8000/api/liveness", {
+      const response = await fetch("https://api-liveness.tony219y.com/liveness", {
         method: "POST",
         body: formData,
       });
@@ -40,8 +40,8 @@ const RealtimeLiveness: React.FC = () => {
       setResult("Error detecting liveness ❌");
 
       if (isRunningRef.current) {
-        // setTimeout(captureFrame, 1000);
-        requestAnimationFrame(captureFrame);
+        setTimeout(captureFrame, 5000); // Retry after 5 seconds
+        // requestAnimationFrame(captureFrame);
       }
     }
   };
