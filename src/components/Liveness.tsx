@@ -1,10 +1,15 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Webcam from "react-webcam";
 
 const RealtimeLiveness: React.FC = () => {
   const webcamRef = useRef<Webcam>(null);
   const isRunningRef = useRef<boolean>(false); // ใช้ useRef แทน useState
   const [result, setResult] = useState<string>("Waiting...");
+  const [open, setOpen] = useState<boolean>(false);
+
+  useEffect(() => {
+    setOpen(true);
+  }, []);
 
   const captureFrame = async () => {
     if (!webcamRef.current || !isRunningRef.current) {
@@ -24,10 +29,13 @@ const RealtimeLiveness: React.FC = () => {
       formData.append("file", blob, "image.jpg");
 
       console.log("Sending frame to API...");
-      const response = await fetch("https://api-liveness.tony219y.com/liveness", {
-        method: "POST",
-        body: formData,
-      });
+      const response = await fetch(
+        "https://api-liveness.tony219y.com/liveness",
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
       const data = await response.json();
       setResult(data.is_real ? "✅ Real Face" : "❌ Fake Face");
@@ -59,13 +67,47 @@ const RealtimeLiveness: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center p-4 text-white">
-      <Webcam ref={webcamRef} screenshotFormat="image/jpeg" className="rounded-lg shadow-md" mirrored />
+    <div className="relative flex flex-col w-full h-screen justify-center items-center p-4 text-white gap-4">
+      {open && (
+        <div className="fixed inset-0 flex items-center justify-center bg-white/10 backdrop-blur-md bg-opacity-10 z-10 duration-500 max-md:p-10">
+          <div className="flex flex-col w-[400px] bg-white p-4 gap-4 rounded-lg shadow-lg text-black">
+            <h1 className="text-xl uppercase font-bold text-center">
+              Warning ⚠️
+            </h1>
+            <p className="text-center text-gray-700">
+              This website sends images via API every few seconds, which may
+              slow down the server. Please help us maintain server performance
+              by using it responsibly.
+            </p>
+            <button
+              onClick={() => setOpen(false)}
+              className="mt-4 px-4 py-2 bg-blue-500 text-white rounded"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+      <h1>Liveness Detection</h1>
+      <Webcam
+        ref={webcamRef}
+        screenshotFormat="image/jpeg"
+        className="rounded-lg shadow-md"
+        mirrored
+      />
       <div className="mt-4 flex gap-4">
-        <button onClick={handleStart} className="p-3 bg-green-500 rounded-lg hover:bg-green-400" disabled={isRunningRef.current}>
+        <button
+          onClick={handleStart}
+          className="p-3 bg-green-500 rounded-lg hover:bg-green-400"
+          disabled={isRunningRef.current}
+        >
           Start
         </button>
-        <button onClick={handleStop} className="p-3 bg-red-500 rounded-lg hover:bg-red-400" disabled={!isRunningRef.current}>
+        <button
+          onClick={handleStop}
+          className="p-3 bg-red-500 rounded-lg hover:bg-red-400"
+          disabled={!isRunningRef.current}
+        >
           Stop
         </button>
       </div>
