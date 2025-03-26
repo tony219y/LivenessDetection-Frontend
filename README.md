@@ -1,54 +1,30 @@
-# React + TypeScript + Vite
+# Liveness Detection Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+The **Liveness Detection Project** aims to improve facial recognition systems by enabling them to distinguish between real faces and spoofing attempts (such as photos or videos used to deceive the system). This project focuses on implementing liveness detection to enhance the security and reliability of facial recognition systems.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- **Liveness Detection**: Detects whether the face is real or a spoof (such as a photo or video).
+- **NUAA Imposter Database**: The project utilizes the **NUAA Imposter Database** to train and test the model, improving its accuracy in detecting spoofing attempts.
+- **Model Performance Metrics**:
+  - Accuracy: 99.8%
+  - Precision: 99.7%
+  - Recall: 99.9%
+  - F1 Score: 99.8%
+  - APCER: 0.004%
+  - BPCER: 0.0006%
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Project Highlights
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **Dataset**: We started with our own dataset but switched to the **NUAA Imposter Database** for better diversity and accuracy.
+- **GPU Setup**: The training process was initially slow using a regular PC, but we upgraded to a high-performance GPU, which significantly sped up the training time.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Team Members
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+- [Phuvis Kerdpramote](https://github.com/Gal1leo2)  
+- [Akeanant Poomdeesittinon](https://github.com/tony219y)  
+- [Panuwit Krueyos](https://github.com/)  
+- [Ronnakorn Muangkan](https://github.com/)  
+- [Rapeeploy Jamsri](https://github.com/)
