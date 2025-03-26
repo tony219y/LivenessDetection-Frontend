@@ -27,4 +27,4 @@ The **Liveness Detection Project** aims to improve facial recognition systems by
 - [Akeanant Poomdeesittinon](https://github.com/tony219y)  
 - [Panuwit Krueyos](https://github.com/)  
 - [Ronnakorn Muangkan](https://github.com/)  
-- [Rapeeploy Jamsri](https://github.com/)
+- [Rapeeploy Jamsri](https://github.com/rapeeploy)
